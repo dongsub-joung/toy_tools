@@ -1,13 +1,36 @@
 use sha2::{Sha256, Sha512, Digest};
-use hex_literal::hex;
+use std::env;
+use std::fs::File;
+use std::io::Write;
 
-fn main() {
+fn main(){
+    let mut raw_data= String::new();
+    raw_data= "hellow world".to_string();
+    
+    let hex_256= generateSha256(&raw_data);
+    let hex_512= generateSha512(&raw_data);
+
+    
+}
+
+fn generateSha256(data: &String) -> String{
     let mut hasher= Sha256::new();
-    hasher.update(b"hello world");
+    
+    hasher.update(data.as_bytes());
+    
     let result= hasher.finalize();
+    let end= hex::encode(&result);
+    
+    format!("sha256: {}", end)
+}
 
-    // assert_eq!(result[..], hex!("
-    // b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9
-    // ")[..]);
-    println!("{:#?}", result[..]);
+fn generateSha512(data: &String) -> String{
+    let mut hasher= Sha512::new();
+    
+    hasher.update(data.as_bytes());
+
+    let result= hasher.finalize();
+    let end= hex::encode(&result);
+
+    format!("sha512: {}", end)
 }
