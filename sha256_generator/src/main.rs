@@ -4,14 +4,34 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::os::raw;
 
+// https://rust-lang-nursery.github.io/rust-cookbook/file/read-write.html
+// https://stackoverflow.com/questions/31192956/whats-the-de-facto-way-of-reading-and-writing-files-in-rust-1-x
+
 fn main(){
     let mut raw_data= String::new();
-    raw_data= getRawFileData();
+    let names= getFileNames();
+    for i in 0..names.len(){
+        raw_data= getRawFileData();
+
+        let file_name= &names[i]; 
+        let hex_256= generateSha256(&raw_data);
+        let hex_512= generateSha512(&raw_data);
     
-    // let hex_256= generateSha256(&raw_data);
-    // let hex_512= generateSha512(&raw_data);
+        let writeable= format!("{} \n{}\n{}", file_name, hex_256, hex_512);
+        
+        // save a each "{i}.txt"
+        // 
+    }
+
 
     println!("{}", raw_data);
+}
+
+fn getFileNames() -> Vec<String> {
+    let mut v: Vec<String>= Vec::new();
+    // get the file name in directory, then set v
+
+    v
 }
 
 fn getRawFileData() -> String {
