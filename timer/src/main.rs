@@ -1,18 +1,27 @@
-use std::{os::unix::thread, fs::File};
+use soloud::*;
+use std::{thread, time};
 
 fn main() {
-    let ring= "ring.mp3";
-    let mut show= 180;
+    let mut show= 10;
     loop {
         println!("{}", show);
         
-        // thread::wait_millisecond(1000);
+        let millis= time::Duration::from_millis(1000);
+        thread::sleep(millis);
+
         show -= 1;
 
         if show == 0 {
             // play a ring;
-            File::open(ring).expect("Not found file");
-            
+            let sl = Soloud::default().unwrap();
+            let mut wav = audio::Wav::default();
+            wav.load_mem(include_bytes!("../audi.wav")).unwrap();
+            sl.play(&wav);
+            while sl.voice_count() > 0 {
+                std::thread::sleep(std::time::Duration::from_millis(100));
+            }
+
+            break;
         } 
     }
 }
