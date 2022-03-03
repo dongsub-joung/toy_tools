@@ -4,9 +4,6 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::os::raw;
 
-// https://rust-lang-nursery.github.io/rust-cookbook/file/read-write.html
-// https://stackoverflow.com/questions/31192956/whats-the-de-facto-way-of-reading-and-writing-files-in-rust-1-x
-
 fn main(){
     let mut raw_data= String::new();
     let names= getFileNames();
