@@ -1,3 +1,4 @@
+use chrono;
 
 fn main() {
     let set_date= "2021 03 02";
@@ -21,15 +22,19 @@ fn main() {
     let r_mm= (mm-t_mm).abs();
     let r_dd= (dd-t_dd).abs();
 
-    let result= format!("Remaining {} : {} : {}", r_yy, r_mm, r_dd);
+    let result= format!("Remaining {} y : {} m : {} d", r_yy, r_mm, r_dd);
     
     println!("{}", result);
 }
 
 fn getToDay() -> (String, String, String){
-    let mut yyyy= String::new();
-    let mut mm= String::new();
-    let mut dd= String::new();
+    let a= chrono::offset::Local::now();
+    let now=a.to_string();
     
-    (yyyy, mm, dd)
+    let yyyy= &now[0..4].to_string();
+    let mm= &now[5..7].to_string();
+    let dd= &now[8..10].to_string();
+    // println!("{:?}", chrono::offset::Local::now());
+
+    (yyyy.clone(), mm.clone(), dd.clone())
 }
