@@ -1,6 +1,8 @@
 use chrono;
 
 fn main() {
+    // let a= test;
+
     let set_date= "2021 03 02";
     let mut list= set_date.split_whitespace();
     
@@ -24,7 +26,6 @@ fn main() {
 
     let result= format!("Remaining {} y : {} m : {} d", r_yy, r_mm, r_dd);
     
-    println!("{}", result);
 }
 
 fn getToDay() -> (String, String, String){
