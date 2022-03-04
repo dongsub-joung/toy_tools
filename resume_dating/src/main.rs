@@ -24,7 +24,7 @@ fn main() {
     let r_dd= (dd-t_dd).abs();
 
     let result= format!("Remaining {} y : {} m : {} d", r_yy, r_mm, r_dd);
-    
+    // let testing
 }
 
 fn getToDay() -> (String, String, String){
