@@ -1,7 +1,6 @@
 use chrono;
 
 fn main() {
-    // let a= test;
 
     let set_date= "2021 03 02";
     let mut list= set_date.split_whitespace();
