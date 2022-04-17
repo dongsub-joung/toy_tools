@@ -8,19 +8,25 @@ struct User<T, U>{
 
 fn main() {
     // root id, pw
-    let hashed_str= hashing(String::from("123"));
+    let hashed= hashing(String::from("123"));
     let root= User{
         id: "jds",
-        pw: hashed_str,
+        pw: hashed,
     };
 
     let inputed_id= inputing();
 
     if root.id == inputed_id.as_str(){
+        println!("OK");
+
         let inputed_pw= inputing();
         if root.pw == hashing(inputed_pw){
-            println!("Done");
+            println!("ALL DONE");
+        } else {
+            panic!("PW ERR");
         }
+    } else {
+        panic!("ID ERR");
     }
 }
 
@@ -28,7 +34,8 @@ fn inputing()-> String{
     let mut buf= String::new();
     io::stdin().read_line(&mut buf);
 
-    buf
+    let result= buf.trim();
+    result.to_string()
 }
 
 fn hashing(pw: String) -> String{
