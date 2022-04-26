@@ -1,3 +1,6 @@
 use hex::ToHex;
-let a= String::from("253");
-let s = a.encode_hex::<String>();
+
+fn main(){
+    let a= String::from("253");
+    let s = a.encode_hex::<String>();
+}
