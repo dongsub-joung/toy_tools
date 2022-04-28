@@ -1,3 +1,4 @@
+#[derive(Debug)]
 struct Person{
     x: f64,
     y: f64,
@@ -8,14 +9,23 @@ impl Person {
     fn set() -> Person{
         Person { x: 0.0, y: 0.0, z: 0.0 }
     }
-
-    fn moving(mut person: Person) -> Person{
-        person.x += 1.0;
-        person.y += 1.0;
-        person.z += 1.0;
-
-        person
-    } 
+    
+    fn moving(mut self: Person, m: Move) -> Person{
+        match m {
+            Move::X => {
+                self.x += 1.0;
+            },
+            Move::Y => {
+                self.y += 1.0;
+            },
+            Move::Z => {
+                self.z += 1.0;
+            },
+            _ => { println!("None"); }
+        }
+        
+        self
+    }
 }
 
 enum Move{
@@ -25,5 +35,7 @@ enum Move{
 }
 
 fn main() {
-    println!("Hello, world!");
+    let mut person= Person::set();
+    let person= person.moving(Move::X);
+    println!("{:#?}", person);
 }
