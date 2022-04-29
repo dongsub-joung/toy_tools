@@ -1,7 +1,8 @@
 use std::str::Bytes;
 use sha2::{Sha256, Sha512, Digest};
 
-fn hash_generator() {
+#[cfg(test)]
+fn hash_generator() -> {
     const HARD: &'static str= "String";
     let public_key= "abcd";
     let private_key= "jds"; 
@@ -11,10 +12,17 @@ fn hash_generator() {
     let combine= format!("{}_{}", HARD,plaintext);
 
     hasher.update(combine.as_bytes());
-    let result= hasher.finalize();
+    let mut result= hasher.finalize();
     let end= hex::encode(&result);
+
+    end
 }
 
-fn main(){
+mod testing{
+    use super::*;
 
+    #[test]
+    fn test1(){
+
+    }
 }
